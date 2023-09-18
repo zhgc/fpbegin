@@ -31,7 +31,7 @@ id succ
 (λx.x) succ
 = {将succ替换变量x}
 (λsucc.succ)
-= {在替换的过程完成之后，变量x就不存在了，而是全部由succ代替}
+= {在替换的过程完成之后，变量x就不存在了，而是全部由succ代替，因此消去}
 succ
 = {将succ替换成lambda}
 λx.x+1
