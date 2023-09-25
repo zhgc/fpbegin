@@ -1,0 +1,8 @@
+<script>
+    function add(x){
+        return function addX(y){
+            return x + y;
+        }
+    }
+    console.log(add(1)(2));
+</script>
