@@ -51,10 +51,8 @@ void swap(int *a,int *b){
 在haskell中不会这样做，因为haskell具有不可变性，类似的功能会这样实现。
 
 ```haskell
-swap a b = (b,a)
+swap (a,b) = (b,a)
 ```
-
-也也就是说，接受两个参数，把这两个参数颠倒过来，放在一个**元组 tuple**中返回。
 
 看到这里，有人可能会有疑问，为什么C程序中到处都是类型，而haskell代码里没有类型呢？难道haskell是类似python那样的动态语言？所以类型什么的无所谓？
 

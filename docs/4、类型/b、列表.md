@@ -98,9 +98,9 @@ listG = tail listA
 我知道，python更简单，可以直接`listA[1:5]`，但是不要忘记haskell创造一个新函数有多方便。你可以这样做来重复使用
 
 ```haskell
-slide a b = (drop a) . (take b)
+dat a b = (drop a) . (take b)
 
-listB = slide 1 5 listA
+listB = dat 1 5 listA
 ```
 
 除此之外，`reverse`函数可以将列表反转，`++`可以连接两个类型相同的列表。
