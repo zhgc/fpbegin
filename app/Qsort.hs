@@ -4,7 +4,7 @@
 
 
 
--- module Qsort where
+module Qsort where
 import Data.List(partition)
 import Control.DeepSeq
 import System.Random(randomRIO)
