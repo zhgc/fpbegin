@@ -71,8 +71,8 @@ executable FPbegin
 
     -- Directories containing source files.
     hs-source-dirs:   app
-    other-modules:    Compose
-    exposed-modules:  
+    --other-modules:    
+    --exposed-modules:  
 
     -- Base language which the package is written in.
     default-language: GHC2021
