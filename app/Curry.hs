@@ -1,4 +1,4 @@
-module Curry where
+-- module Curry where
 
 {- 如何在haskell中演示柯里化？ -}
 
