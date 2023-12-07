@@ -24,7 +24,7 @@ qs2 (x:xs) = qs2 l ++ [x] ++ qs2 r
 
 qs3 [] = []
 qs3 (x:xs) = qs3 l ++ [x] ++ qs3 r
-  where 
+  where
     (l,r) = part (<x) xs
 
 qs4 [] = []
@@ -43,7 +43,7 @@ part3 p (x:xs)
   |p x = (x:l,r)
   |otherwise = (l,x:r)
   where
-    (a,b) = splitAt ((length xs) `div` 2)  xs
+    (a,b) = splitAt (length xs `div` 2)  xs
     (la,ra) = part3 p a
     (lb,rb) = part3 p b
     (l,r) = (la ++ lb ,ra ++ rb)
