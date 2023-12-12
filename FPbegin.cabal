@@ -71,7 +71,7 @@ executable FPbegin
 
     -- Directories containing source files.
     hs-source-dirs:   app
-    other-modules: Qsort ,Test
+    other-modules: Qsort ,Test ,Iso ,UTLC
     --exposed-modules:  
 
     -- Base language which the package is written in.
