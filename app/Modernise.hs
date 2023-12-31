@@ -15,6 +15,7 @@ word' (' ':xs) = [] : word' xs
 word' ('-':xs) = [] : pure '-' : word' xs
 word' (x:xs)   = let (y:ys) = word' xs in (x:y):ys
 -- 这里有一个警告，这里的问题在于没能否保证let y:ys不是一个[],实际上可以保证，因为这里的xs至少包含一个元素
+-- 不过为了保证逻辑的完整性，用一个case匹配一下比较好，这里就不写了。
 
 wordmap :: [String] -> [String]
 wordmap = fmap p
