@@ -3,7 +3,10 @@ module Modernise(modernise) where
 import Data.Char ( toUpper )
 
 modernise :: String -> String
-modernise = unwords .  wordmap . word'
+modernise = word' |> wordmap |> unwords
+
+(|>) :: (a -> b) -> (b -> c) -> a -> c
+(|>) = flip (. )
 
 word' :: String -> [String]
 word' []       = []
