@@ -6,6 +6,16 @@
 
 # print(fib(10))
 
+# def fibs():
+#     yield (a := 0)
+#     yield (b := 1)
+#     while True : yield (a+b);a,b = b,a+b
+
+# g = fibs()
+
+# for _ in range(10):
+#     print(next(g))
+
 
 # def fib(n):
 #     if n <= 1:
@@ -33,7 +43,7 @@
 
 # print(fib(10))
 
-print(((lambda f:(lambda x:x(x))(lambda x:f(lambda *args : x(x)(*args))))(lambda g:lambda n,a,b: a if n == 0 else g(n-1,b,a+b)))(10,0,1))
+print(((lambda f:(lambda x:x(x))(lambda x:f(lambda *args : x(x)(*args))))(lambda g:lambda n,a,b: a if n == 0 else g(n-1,b,a+b)))(1000,0,1))
 
 
 # fibloop = lambda n,a,b: a if n == 0 else fibloop(n-1,b,a+b)
