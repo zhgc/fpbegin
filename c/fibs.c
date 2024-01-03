@@ -3,11 +3,12 @@
 
 typedef unsigned long long ull;
 
+// 做了点小修改，俺寻思是不是把n = 1放在前面判断更效率？仔细一想好像没区别。
 ull fibloop(int n,ull a,ull b){
-    return n == 0
-        ? a
-        : n == 1
+    return n == 1
         ? b
+        : n == 0
+        ? a
         : fibloop(n-1,b,a+b);
 }
 
