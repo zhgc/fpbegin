@@ -51,7 +51,8 @@ genAToB a b
 takeGen :: Int -> Gen a -> Gen a
 takeGen _ None        = None
 takeGen n g@(Gen(_,g')) 
-    | n == 0    = g
+    | n == 0    = None
+    | n == 1    = g
     | otherwise = takeGen (n-1) g'
 
 showThisGen :: Show a => Gen a -> String
