@@ -27,6 +27,9 @@ instance Functor Gen where
     fmap _ None = None
     fmap f (Gen(a,g')) = Gen(f a,fmap f g')
 
+generator :: (a -> a) -> a -> Gen a
+generator f x = Gen (x,generator f (f x))
+
 genToList :: Gen a -> [] a
 genToList None         = []
 genToList (Gen (x,g')) = x:genToList g'
@@ -35,8 +38,10 @@ listToGen :: [] a -> Gen a
 listToGen []     = None
 listToGen (x:xs) = Gen (x,listToGen xs)
 
-generator :: (a -> a) -> a -> Gen a
-generator f x = Gen (x,generator f (f x))
+genUntil :: (t -> t) -> t -> (t -> Bool) -> Gen t
+genUntil f x con
+    | con x     = None
+    | otherwise = Gen (x,genUntil f (f x) con)
 
 genAToB :: (Enum a,Eq a) => a -> a -> Gen a
 genAToB a b 
