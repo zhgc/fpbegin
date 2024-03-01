@@ -19,7 +19,7 @@ instance Generator Gen  where
     this (Gen (x,_))  = x
 
     next :: Gen a -> Gen a
-    next None         = None
+    next None         = error "<- 绝嗣了 ->"
     next (Gen (_,g')) = g'
 
 instance Functor Gen where
@@ -27,8 +27,37 @@ instance Functor Gen where
     fmap _ None = None
     fmap f (Gen(a,g')) = Gen(f a,fmap f g')
 
+instance Semigroup (Gen a) where
+    (<>) :: Gen a -> Gen a -> Gen a
+    None <> g        = g
+    (Gen(x,g')) <> g = Gen (x,g' <> g)
+
+instance Enum a => Enum (Gen a) where
+    succ :: Gen a -> Gen a
+    succ None = None
+    succ g    = succ <$> g
+
+    pred :: Gen a -> Gen a
+    pred None = None
+    pred g    = pred <$> g
+
+    toEnum :: Int -> Gen a
+    toEnum n = Gen(toEnum n,None)
+
+    fromEnum ::     Gen a -> Int
+    fromEnum None        = 0
+    fromEnum (Gen(x,g')) =fromEnum x + fromEnum g'
+
+
 generator :: (a -> a) -> a -> Gen a
 generator f x = Gen (x,generator f (f x))
+
+{-
+试试看用生成器求斐波那契数列
+
+fib = generator (\(a,b) -> (b,a+b)) (0,1)
+fib |> genGoto 10 |> fst
+-}
 
 genToList :: Gen a -> [] a
 genToList None         = []
@@ -48,12 +77,12 @@ genAToB a b
     | a == b    = Gen(a,None)
     | otherwise = Gen(a,genAToB (succ a) b)
 
-takeGen :: Int -> Gen a -> Gen a
-takeGen _ None        = None
-takeGen n g@(Gen(_,g')) 
+genGoto :: Int -> Gen a -> Gen a
+genGoto _ None        = None
+genGoto n g@(Gen(_,g')) 
     | n == 0    = None
     | n == 1    = g
-    | otherwise = takeGen (n-1) g'
+    | otherwise = genGoto (n-1) g'
 
 showThisGen :: Show a => Gen a -> String
 showThisGen None          = "None"
