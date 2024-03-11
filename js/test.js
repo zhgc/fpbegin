@@ -1,0 +1,1 @@
+document.write("<mark>第二段</mark>");

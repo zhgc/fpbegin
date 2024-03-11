@@ -56,7 +56,7 @@ generator f x = Gen (x,generator f (f x))
 试试看用生成器求斐波那契数列
 
 fib = generator (\(a,b) -> (b,a+b)) (0,1)
-fib |> genGoto 10 |> fst
+fib |> genGoto 10 |> this |> fst
 -}
 
 genToList :: Gen a -> [] a
