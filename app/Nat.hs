@@ -1,54 +1,26 @@
-module Nat where
-
--- swap :: (a,b) -> (b,a)
--- swap :: (a,a) -> (a,a)
-
--- swap (a,b) = (b,a)
-
-swap :: Either (a,b) (b,a) -> Either (a,b) (b,a)
-swap (Left (a,b)) = Right (b,a)
-swap (Right (b,a)) = Left (a,b)
-
-
-
-twice :: (t -> t) -> t -> t 
-twice f x = f $ f x
-
--- twice (swap::(a,a)->(a,a))
-
-f a = [a]
+module MyNat where
 
 {-
-[] [[]] [[[]]] [[[[]]]]
-需要将他们定义为同一类型
+数的诞生。
 
-怎么可能？
+一、0是自然数。
 
-完全可以。实际上有一个现成的递归类型
+二、每个自然数都有一个它的后继， n 的后继记作n'
+
+三、0，不是任何数的后继。
+
+四、不同的自然数要有不同的后继。
+
+五、如果自然数的某个子集，包含0，且其中的每一项都有后继元素，这个子集就是自然数集本身。
+
+(数学归纳法)
+任何一个命题，对0成立，然后，假定该命题对n成立的前提下，对n+1成立。那么该命题为真。
+
+[] 的情况
+(x:xs) 的情况
+
+自然数就诞生了。
 -}
 
--- list = [1,2,3,4,5]
--- list = (((([]))))
+data Nat = Zero | Succ Nat
 
-data Nat = Zero | Succ Nat deriving(Show,Eq,Ord)
-
-fold f x 0 = x
-fold f x n = f $ fold f x (n-1)
-
-{-
-类型即命题，程序即证明
-
-swap :: Either (a,b) (b,a) -> Either (a,b) (b,a)
-
-twice :: (t -> t) -> t -> t
-twice f x =
-
-VCR 到此结束
-
-byebye
-
-记得一键三联
-
-点赞评论转发收藏。
-
--}
